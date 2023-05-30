@@ -14,12 +14,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
+import { LoginComponent } from './pages/login/login.component';
+import { StageComponent } from './pages/stage/stage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartComponent,
-    LoginComponent
+    LoginComponent,
+    StageComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatButtonModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
