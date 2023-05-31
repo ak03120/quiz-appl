@@ -5,9 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { LoginComponent } from './pages/login/login.component';
-import { StartComponent } from './pages/start/start.component';
-
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
@@ -17,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { LoginComponent } from './pages/login/login.component';
+import { StartComponent } from './pages/start/start.component';
 import { StageComponent } from './pages/stage/stage.component';
 
 @NgModule({
