@@ -1,0 +1,22 @@
+.vertical-radio-group {
+    display: flex;
+    flex-direction: column;
+}
+.next-button {
+    padding: 25px 30px;
+}
+mat-card-title, mat-radio-button {
+    padding-bottom: 10px;
+}
+.radio-button-image {
+    display: flex;
+    justify-content: center;
+}
+.radio-button-set {
+    margin: 25px;
+    display: inline-block;
+}
+.image-radio-group {
+    padding-right: auto;
+    padding-left: auto;
+}

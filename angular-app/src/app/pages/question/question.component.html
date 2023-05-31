@@ -1,1 +1,37 @@
-<p>question works!</p>
+<h3>次の問いに答えなさい。</h3>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title><b>問題</b></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <p>問題文章です</p>
+    </mat-card-content>
+</mat-card>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title><b>回答</b></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-radio-group class="vertical-radio-group">
+            <ng-container *ngFor="let choice of choices">
+                <mat-radio-button [value]="choice">{{choice}}</mat-radio-button>
+            </ng-container>
+        </mat-radio-group>
+          <mat-radio-group class="image-radio-group">
+            <ng-container *ngFor="let choice of choices">
+              <div class="radio-button-set">
+                <div>
+                  <ngx-skeleton-loader [theme]="{'height': '200px', 'width': '200px'}"></ngx-skeleton-loader>
+                </div>
+                <div>
+                  <mat-radio-button class="radio-button-image" [value]="choice"></mat-radio-button>
+                </div>
+              </div>
+            </ng-container>
+          </mat-radio-group>
+        
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button mat-raised-button color="primary" class="next-button">次の問題へ</button>
+    </mat-card-actions>
+</mat-card>
