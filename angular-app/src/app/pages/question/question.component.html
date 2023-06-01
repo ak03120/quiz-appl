@@ -18,20 +18,29 @@
             </ng-container>
         </mat-radio-group>
           <mat-radio-group class="image-radio-group">
+            <div class="grid-container">
             <ng-container *ngFor="let choice of choices">
+
               <div class="radio-button-set">
                 <div>
-                  <ngx-skeleton-loader [theme]="{'height': '200px', 'width': '200px'}"></ngx-skeleton-loader>
+                  <ngx-skeleton-loader [theme]="{'height': '140px'}"></ngx-skeleton-loader>
                 </div>
                 <div>
                   <mat-radio-button class="radio-button-image" [value]="choice"></mat-radio-button>
                 </div>
               </div>
+
             </ng-container>
+          </div>
           </mat-radio-group>
         
     </mat-card-content>
-    <mat-card-actions align="end">
+    <mat-card-actions align="start">
+      <div class="actions-left">
+        <button mat-stroked-button color="primary" class="previous-button">前の問題へ</button>
+      </div>
+      <div class="actions-right">
         <button mat-raised-button color="primary" class="next-button">次の問題へ</button>
+      </div>
     </mat-card-actions>
 </mat-card>
