@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./result.component.scss']
 })
 export class ResultComponent {
-
+  stageName: string = "ステージ1";
+  correctCount: number = 10;
+  achievementTitle: string = "称号サンプル";
 }
