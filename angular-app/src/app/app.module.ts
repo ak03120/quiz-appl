@@ -20,6 +20,7 @@ import { StartComponent } from './pages/start/start.component';
 import { StageComponent } from './pages/stage/stage.component';
 import { QuestionComponent } from './pages/question/question.component';
 import { ResultComponent } from './pages/result/result.component';
+import { ToolbarComponent } from './pages/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ResultComponent } from './pages/result/result.component';
     LoginComponent,
     StageComponent,
     QuestionComponent,
-    ResultComponent
+    ResultComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
