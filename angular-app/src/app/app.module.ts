@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatRadioModule } from '@angular/material/radio'
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { LoginComponent } from './pages/login/login.component';
 import { StartComponent } from './pages/start/start.component';
@@ -45,7 +46,8 @@ import { ToolbarComponent } from './pages/toolbar/toolbar.component';
     MatIconModule,
     MatProgressBarModule,
     MatRadioModule,
-    NgxSkeletonLoaderModule
+    NgxSkeletonLoaderModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
