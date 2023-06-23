@@ -6,7 +6,7 @@
   <mat-card-content>
     <div class="result-text">
       <p>10問中<span class="bold-text">{{correctCount}}問</span>正解！</p>
-      <ng-container *ngIf="correctCount > 10; else elseBlock">
+      <ng-container *ngIf="correctCount > 9; else elseBlock">
         <p>称号「<span class="bold-text">{{achievementTitle}}</span>」を獲得しました！</p>
         <a href="https://twitter.com/intent/tweet?text=Apple信者クイズ「{{stageName}}」で10問中{{correctCount}}問正解しました！&button_hashtag=Apple信者クイズ"
           class="twitter-hashtag-button" data-size="large"></a>
