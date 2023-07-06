@@ -1,0 +1,28 @@
+.vertical-radio-group {
+    display: flex;
+    flex-direction: column;
+}
+.next-button, .previous-button {
+    padding: 25px 30px;
+}
+.radio-button-image {
+    display: flex;
+    justify-content: center;
+}
+.radio-button-set {
+    padding: auto;
+    margin: 10px;
+    display: inline-block;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.image-radio-group {
+    padding-right: auto;
+    padding-left: auto;
+}
+.actions-right {
+    position: absolute;
+    right: 15px;
+}

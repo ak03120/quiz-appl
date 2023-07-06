@@ -12,17 +12,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatRadioModule } from '@angular/material/radio'
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import { LoginComponent } from './pages/login/login.component';
 import { StartComponent } from './pages/start/start.component';
 import { StageComponent } from './pages/stage/stage.component';
+import { QuestionComponent } from './pages/question/question.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartComponent,
     LoginComponent,
-    StageComponent
+    StageComponent,
+    QuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,9 @@ import { StageComponent } from './pages/stage/stage.component';
     MatButtonModule,
     MatDialogModule,
     MatIconModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatRadioModule,
+    NgxSkeletonLoaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
