@@ -14,12 +14,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatRadioModule } from '@angular/material/radio'
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { LoginComponent } from './pages/login/login.component';
 import { StartComponent } from './pages/start/start.component';
 import { StageComponent } from './pages/stage/stage.component';
 import { QuestionComponent } from './pages/question/question.component';
 import { ResultComponent } from './pages/result/result.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { ResultComponent } from './pages/result/result.component';
     LoginComponent,
     StageComponent,
     QuestionComponent,
-    ResultComponent
+    ResultComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import { ResultComponent } from './pages/result/result.component';
     MatIconModule,
     MatProgressBarModule,
     MatRadioModule,
-    NgxSkeletonLoaderModule
+    NgxSkeletonLoaderModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
