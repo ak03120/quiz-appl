@@ -19,6 +19,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { StartComponent } from './pages/start/start.component';
 import { StageComponent } from './pages/stage/stage.component';
 import { QuestionComponent } from './pages/question/question.component';
+import { ResultComponent } from './pages/result/result.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { QuestionComponent } from './pages/question/question.component';
     StartComponent,
     LoginComponent,
     StageComponent,
-    QuestionComponent
+    QuestionComponent,
+    ResultComponent
   ],
   imports: [
     BrowserModule,
