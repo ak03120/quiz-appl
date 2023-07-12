@@ -1,0 +1,27 @@
+<h3>あなたのプロフィール</h3>
+<mat-card class="default-card">
+    <mat-card-content class="center">
+        <ngx-skeleton-loader [theme]="{height: '200px', width: '200px'}" appearance="circle"></ngx-skeleton-loader>
+        <p><span class="bold-text">{{name}}</span>さん</p>
+    </mat-card-content>
+</mat-card>
+<mat-card class="default-card">
+    <mat-card-header>
+        <mat-card-title class="bold-text">正解した問題数</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="center">
+        <p>100問中 <span class="bold-text">{{correctCount}}問</span> 正解！</p>
+    </mat-card-content>
+</mat-card>
+<mat-card class="default-card">
+    <mat-card-header>
+        <mat-card-title class="bold-text">獲得した実績</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="center">
+        <div class="bold-text" *ngFor="let achievement of achievements">{{achievement}}</div>
+    </mat-card-content>
+</mat-card>
+<div class="center">
+    <button mat-stroked-button color="primary" class="default-button" routerLink="/start">タイトルへ戻る</button>
+    <button mat-stroked-button color="primary" class="default-button" routerLink="/stage">ステージ選択画面へ戻る</button>
+</div>

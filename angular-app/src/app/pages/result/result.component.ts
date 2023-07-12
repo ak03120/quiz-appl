@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Result } from 'src/app/types/result';
 
 @Component({
   selector: 'app-result',
@@ -6,7 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./result.component.scss']
 })
 export class ResultComponent {
-  stageName: string = "ステージ1";
-  correctCount: number = 10;
-  achievementTitle: string = "称号サンプル";
+  result: Result = {
+    stage_name: "ステージ1",
+    correct_count: 10,
+    achievement: "称号サンプル"
+  }
 }
