@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatRadioModule } from '@angular/material/radio'
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import {
+  GoogleLoginProvider,
+} from '@abacritt/angularx-social-login';
 
 import { LoginComponent } from './pages/login/login.component';
 import { StartComponent } from './pages/start/start.component';
@@ -23,6 +28,13 @@ import { QuestionComponent } from './pages/question/question.component';
 import { ResultComponent } from './pages/result/result.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { GoogleSigninButtonModule } from '@abacritt/angularx-social-login'
+import { GoogleInitOptions } from '@abacritt/angularx-social-login';
+
+const googleLoginOptions: GoogleInitOptions = {
+  oneTapEnabled: false, // default is true
+  scopes: 'https://www.googleapis.com/auth/userinfo.profile'
+};
 
 @NgModule({
   declarations: [
@@ -39,6 +51,9 @@ import { ProfileComponent } from './pages/profile/profile.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    SocialLoginModule,
+    GoogleSigninButtonModule,
+    HttpClientModule,
 
     MatToolbarModule,
     MatCardModule,
@@ -51,7 +66,25 @@ import { ProfileComponent } from './pages/profile/profile.component';
     NgxSkeletonLoaderModule,
     MatSidenavModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: true,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '831105382657-45pj5bu9j03t4p8lh54qpuegogbjnpso.apps.googleusercontent.com', googleLoginOptions
+            )
+          }
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
