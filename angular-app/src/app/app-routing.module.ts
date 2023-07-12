@@ -6,10 +6,11 @@ import { StageComponent } from './pages/stage/stage.component';
 import { QuestionComponent } from './pages/question/question.component';
 import { ResultComponent } from './pages/result/result.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { authGuard } from './auth.guard';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: 'start', component: StartComponent},
+  {path: 'start', component: StartComponent, canActivate: [authGuard]},
   {path: 'stage', component: StageComponent},
   {path: 'question', component: QuestionComponent},
   {path: 'result', component: ResultComponent},

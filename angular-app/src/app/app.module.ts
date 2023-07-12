@@ -32,7 +32,7 @@ import { GoogleSigninButtonModule } from '@abacritt/angularx-social-login'
 import { GoogleInitOptions } from '@abacritt/angularx-social-login';
 
 const googleLoginOptions: GoogleInitOptions = {
-  oneTapEnabled: false, // default is true
+  oneTapEnabled: true, // default is true
   scopes: 'https://www.googleapis.com/auth/userinfo.profile'
 };
 
