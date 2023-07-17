@@ -26,6 +26,15 @@
     "answer_type": {
       "type": "string",
       "required": true
+    },
+    "correct_number": {
+      "required": true,
+      "type": "integer"
+    },
+    "choices": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::choice.choice"
     }
   }
 }
