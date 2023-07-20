@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { StageComponent } from './pages/stage/stage.component';
 import { QuestionComponent } from './pages/question/question.component';
 import { ResultComponent } from './pages/result/result.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'stage', component: StageComponent},
   {path: 'question', component: QuestionComponent},
   {path: 'result', component: ResultComponent},
+  {path: 'profile', component: ProfileComponent},
   {path: '**', redirectTo: '/login', pathMatch: 'full'}
 ];
 
