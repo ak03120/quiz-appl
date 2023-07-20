@@ -24,6 +24,8 @@ import { ResultComponent } from './pages/result/result.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +35,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
     QuestionComponent,
     ResultComponent,
     ToolbarComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     MatProgressBarModule,
     MatRadioModule,
     NgxSkeletonLoaderModule,
-    MatSidenavModule
+    MatSidenavModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
