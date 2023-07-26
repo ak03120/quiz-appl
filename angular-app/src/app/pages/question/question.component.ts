@@ -10,7 +10,16 @@ import { OnInit } from '@angular/core';
   styleUrls: ['./question.component.scss']
 })
 export class QuestionComponent implements OnInit {
-  constructor(private qService: QuestionService) {}
+  selectedChoice: Choice;
+  constructor(private qService: QuestionService) {
+    this.selectedChoice = {
+      question_id: 0,
+      content: '',
+      order_number: 0
+    };
+  }
+  choiceHistory: Choice[] = [];
+  question_number = 1;
   choices: Choice[] = [{
     question_id: 0,
     content: "選択1",
@@ -45,7 +54,7 @@ export class QuestionComponent implements OnInit {
   ngOnInit(): void {
     console.log("1");
     
-    this.qService.getQuestion(1).subscribe(
+    this.qService.getQuestion(this.question_number).subscribe(
       (question: Question) => {
         console.log(question);
         this.question = question;
@@ -54,6 +63,20 @@ export class QuestionComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+  nextQuestion() {
+    this.question_number++;
+    this.choiceHistory.push(this.selectedChoice);
+    this.qService.getQuestion(this.question_number).subscribe(
+      (question: Question) => {
+        console.log(question);
+        this.question = question;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+    console.log(this.choiceHistory);
   }
 
   // question: Question = {
