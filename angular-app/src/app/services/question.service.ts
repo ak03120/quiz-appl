@@ -9,7 +9,8 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class QuestionService {
-  
+  choiceHistory: Choice[] = [];
+  correctCount: number = 0;
 
   constructor(private http: HttpClient) { }
   private transformChoiceData(choiceData: any): Choice {
@@ -41,7 +42,7 @@ export class QuestionService {
             };
             return choice;
           }),
-          answer_correct: questionData.answer_correct
+          answer_correct: questionData.correct_number
         };
         return question;
       })

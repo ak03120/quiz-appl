@@ -1,5 +1,5 @@
 export interface Result {
-    stage_name: string;
-    correct_count: number;
+    id: number;
+    stage_number: number;
     achievement: string;
 };

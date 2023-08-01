@@ -1,26 +1,23 @@
 <h3>リザルト</h3>
 <mat-card>
   <mat-card-header>
-    <mat-card-title><span class="bold-text">{{result.stage_name}}</span></mat-card-title>
+    <mat-card-title><span class="bold-text">ステージ{{result.stage_number}}</span></mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <div class="result-text">
-      <p>10問中<span class="bold-text">{{result.correct_count}}問</span>正解！</p>
-      <ng-container *ngIf="result.correct_count > 9; else elseBlock">
+      <p>10問中<span class="bold-text">{{correct_count}}問</span>正解！</p>
+      <ng-container *ngIf="correct_count > 9; else elseBlock">
         <p>称号「<span class="bold-text">{{result.achievement}}</span>」を獲得しました！</p>
-        <a href="https://twitter.com/intent/tweet?text=Apple信者クイズ「{{result.stage_name}}」で10問中{{result.correct_count}}問正解しました！&button_hashtag=Apple信者クイズ"
+        <a href="https://twitter.com/intent/tweet?text=Apple信者クイズ「ステージ{{result.stage_number}}」で10問中{{correct_count}}問正解しました！&button_hashtag=Apple信者クイズ"
           class="twitter-hashtag-button" data-size="large"></a>
         <div>
-          <button mat-fab extended class="next-button">次のステージへ</button>
+          <button mat-fab extended routerLink="/stage">ステージ選択画面へ戻る</button>
         </div>
       </ng-container>
       <ng-template #elseBlock>
         <p>ざんねーん！全問正解できませんでした。</p>
-        <button mat-fab extended>リトライ</button>
+        <button mat-fab extended routerLink="/stage">ステージ選択画面へ戻る</button>
       </ng-template>
     </div>
   </mat-card-content>
-  <mat-card-actions align="start">
-    <button mat-stroked-button color="primary" class="previous-button">ステージ選択画面へ</button>
-  </mat-card-actions>
 </mat-card>

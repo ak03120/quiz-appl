@@ -3,6 +3,10 @@ import { QuestionService } from 'src/app/services/question.service';
 import { Choice } from 'src/app/types/question';
 import { Question } from 'src/app/types/question'
 import { OnInit } from '@angular/core';
+import { Router } from '@angular/router'
+import { ActivatedRoute } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-question',
@@ -11,15 +15,16 @@ import { OnInit } from '@angular/core';
 })
 export class QuestionComponent implements OnInit {
   selectedChoice: Choice;
-  constructor(private qService: QuestionService) {
+  constructor(private qService: QuestionService, private router: Router, private route: ActivatedRoute) {
     this.selectedChoice = {
       question_id: 0,
       content: '',
       order_number: 0
     };
   }
-  choiceHistory: Choice[] = [];
-  question_number = 1;
+  question_number = this.route.snapshot.params['stage'];
+
+  
   choices: Choice[] = [{
     question_id: 0,
     content: "選択1",
@@ -52,8 +57,10 @@ export class QuestionComponent implements OnInit {
     answer_correct: 1
   }
   ngOnInit(): void {
-    console.log("1");
-    
+    if(this.question_number > 1)
+    {
+      this.question_number = (this.question_number-1)*10+1;
+    }
     this.qService.getQuestion(this.question_number).subscribe(
       (question: Question) => {
         console.log(question);
@@ -65,8 +72,16 @@ export class QuestionComponent implements OnInit {
     );
   }
   nextQuestion() {
+    if(this.selectedChoice.question_id == 0)
+      return;
     this.question_number++;
-    this.choiceHistory.push(this.selectedChoice);
+    this.qService.choiceHistory.push(this.selectedChoice);
+    console.log(this.selectedChoice.order_number,this.question.answer_correct);
+
+    if(this.selectedChoice.order_number === this.question.answer_correct)
+    {
+      this.qService.correctCount++;
+    }
     this.qService.getQuestion(this.question_number).subscribe(
       (question: Question) => {
         console.log(question);
@@ -76,17 +91,15 @@ export class QuestionComponent implements OnInit {
         console.error(error);
       }
     );
-    console.log(this.choiceHistory);
+    console.log(this.qService.choiceHistory);
+    this.selectedChoice = {
+      question_id: 0,
+      content: '',
+      order_number: 0
+    };
+    if(this.qService.choiceHistory.length % 10 == 0)
+    {
+      this.router.navigate(['/result']);
+    }
   }
-
-  // question: Question = {
-  //   id:0,
-  //   stage_number:1,
-  //   question_text:"問題文1",
-  //   question_image_url:null,
-  //   // question_image_url:"https://pbs.twimg.com/card_img/1675384287611469829/U_LK6jrU?format=jpg&name=900x900",
-  //   answer_type:"text",
-  //   choices: this.choices,
-  //   answer_correct: 1
-  // }
 }
