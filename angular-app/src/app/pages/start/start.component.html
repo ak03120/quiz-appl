@@ -1,5 +1,5 @@
 
-<h2>ようこそ！Apple信者クイズへ！</h2>
+<h2>ようこそ、{{this.user.currentUser.name}}さん！Apple信者クイズへ！</h2>
 <h3>さっそく始めましょう！</h3>
 <mat-card class="default-card">
     <mat-card-content class="center">
@@ -11,4 +11,7 @@
 </mat-card>
 <div class="center">
     <button mat-stroked-button color="primary" class="default-button" routerLink="/profile">プロフィールを見る</button>
+</div>
+<div class="center">
+    <button mat-stroked-button color="primary" class="default-button" (click)='signOut()'>ログアウト</button>
 </div>
