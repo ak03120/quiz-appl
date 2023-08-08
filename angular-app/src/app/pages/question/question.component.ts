@@ -5,6 +5,7 @@ import { Question } from 'src/app/types/question'
 import { OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -15,7 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class QuestionComponent implements OnInit {
   selectedChoice: Choice;
-  constructor(private qService: QuestionService, private router: Router, private route: ActivatedRoute) {
+  constructor(private qService: QuestionService, private router: Router, private route: ActivatedRoute, private http: HttpClient) {
     this.selectedChoice = {
       question_id: 0,
       content: '',
@@ -81,6 +82,17 @@ export class QuestionComponent implements OnInit {
     if(this.selectedChoice.order_number === this.question.answer_correct)
     {
       this.qService.correctCount++;
+      const jsonData = {
+        data: {
+          question_progress: this.qService.correctCount + ((this.question.stage_number-1)*10),
+          stage_progress: this.qService.choiceHistory[0].question_id%10,
+        }
+      };
+      this.http.put('http://localhost:1337/api/profiles/1', jsonData).subscribe(response => {
+        console.log(response)
+      }, error => {
+        console.log(error)
+      });
     }
     this.qService.getQuestion(this.question_number).subscribe(
       (question: Question) => {
