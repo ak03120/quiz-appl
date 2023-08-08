@@ -10,7 +10,7 @@ import { OnInit } from '@angular/core';
   styleUrls: ['./question.component.scss']
 })
 export class QuestionComponent implements OnInit {
-  constructor(private qService: QuestionService) {}
+  constructor(private questionSvc: QuestionService) {}
   choices: Choice[] = [{
     question_id: 0,
     content: "選択1",
@@ -43,9 +43,7 @@ export class QuestionComponent implements OnInit {
     answer_correct: 1
   }
   ngOnInit(): void {
-    console.log("1");
-    
-    this.qService.getQuestion(1).subscribe(
+    this.questionSvc.getQuestion(1).subscribe(
       (question: Question) => {
         console.log(question);
         this.question = question;
