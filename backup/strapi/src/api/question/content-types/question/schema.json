@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "questions",
+  "info": {
+    "singularName": "question",
+    "pluralName": "questions",
+    "displayName": "Question",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "stage_number": {
+      "required": true,
+      "type": "integer"
+    },
+    "question_text": {
+      "type": "text",
+      "required": true
+    },
+    "question_image_url": {
+      "type": "text"
+    },
+    "answer_type": {
+      "type": "string",
+      "required": true
+    },
+    "correct_number": {
+      "required": true,
+      "type": "integer"
+    },
+    "choices": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::choice.choice"
+    }
+  }
+}

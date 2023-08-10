@@ -36,6 +36,8 @@ const googleLoginOptions: GoogleInitOptions = {
   scopes: 'https://www.googleapis.com/auth/userinfo.profile'
 };
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +47,7 @@ const googleLoginOptions: GoogleInitOptions = {
     QuestionComponent,
     ResultComponent,
     ToolbarComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +66,8 @@ const googleLoginOptions: GoogleInitOptions = {
     MatProgressBarModule,
     MatRadioModule,
     NgxSkeletonLoaderModule,
-    MatSidenavModule
+    MatSidenavModule,
+    HttpClientModule
   ],
   providers: [
     {

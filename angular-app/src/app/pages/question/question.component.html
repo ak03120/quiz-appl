@@ -17,7 +17,7 @@
   <mat-card-content>
     <ng-container *ngIf="question.answer_type === 'text'; else elseBlock">
       <mat-radio-group class="vertical-radio-group">
-        <ng-container *ngFor="let choice of choices">
+        <ng-container *ngFor="let choice of question.choices">
           <mat-radio-button [value]="choice">{{choice.content}}</mat-radio-button>
         </ng-container>
       </mat-radio-group>
@@ -25,7 +25,7 @@
     <ng-template #elseBlock>
       <mat-radio-group class="image-radio-group">
         <div class="grid-container">
-          <ng-container *ngFor="let choice of choices">
+          <ng-container *ngFor="let choice of question.choices">
             <div class="radio-button-set">
               <div>
                 <img src="{{choice.content}}">
