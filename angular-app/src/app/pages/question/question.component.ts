@@ -24,8 +24,6 @@ export class QuestionComponent implements OnInit {
     };
   }
   question_number = this.route.snapshot.params['stage'];
-
-  
   choices: Choice[] = [{
     question_id: 0,
     content: "選択1",
