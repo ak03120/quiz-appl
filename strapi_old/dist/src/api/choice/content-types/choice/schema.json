@@ -1,0 +1,28 @@
+{
+    "kind": "collectionType",
+    "collectionName": "choices",
+    "info": {
+        "singularName": "choice",
+        "pluralName": "choices",
+        "displayName": "Choice",
+        "description": ""
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "question_id": {
+            "type": "integer",
+            "required": true
+        },
+        "content": {
+            "type": "string"
+        },
+        "order_number": {
+            "type": "integer",
+            "required": true,
+            "unique": false
+        }
+    }
+}

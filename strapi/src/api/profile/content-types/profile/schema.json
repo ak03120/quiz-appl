@@ -13,8 +13,7 @@
   "pluginOptions": {},
   "attributes": {
     "question_progress": {
-      "type": "integer",
-      "required": true
+      "type": "integer"
     },
     "stage_progress": {
       "type": "integer"
