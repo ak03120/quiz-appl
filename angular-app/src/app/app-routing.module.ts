@@ -15,7 +15,6 @@ const routes: Routes = [
   {path: 'question', component: QuestionComponent},
   {path: 'result', component: ResultComponent},
   {path: 'profile', component: ProfileComponent},
-  {path: '**', redirectTo: '/login', pathMatch: 'full'}
 ];
 
 @NgModule({
