@@ -78,20 +78,9 @@ export class QuestionComponent implements OnInit {
     console.log(this.selectedChoice.order_number,this.question.answer_correct);
 
     if(this.selectedChoice.order_number === this.question.answer_correct)
-    {
       this.qService.correctCount++;
-      const jsonData = {
-        data: {
-          question_progress: this.qService.correctCount + ((this.question.stage_number-1)*10),
-          stage_progress: this.qService.choiceHistory[0].question_id%10,
-        }
-      };
-      this.http.put('http://localhost:1337/api/profiles/1', jsonData).subscribe(response => {
-        console.log(response)
-      }, error => {
-        console.log(error)
-      });
-    }
+
+
     this.qService.getQuestion(this.question_number).subscribe(
       (question: Question) => {
         console.log(question);

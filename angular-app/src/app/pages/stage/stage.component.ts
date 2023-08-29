@@ -11,15 +11,8 @@ import { Profile } from 'src/app/types/profile';
 })
 export class StageComponent implements OnInit{
   constructor(private http: HttpClient, private ProfileSvc: ProfileService) {}
-  stages: Stage[] = [
-    {id: 0, name: "ステージ1", correctCount: 10},
-    {id: 1, name: "ステージ2", correctCount: 7},
-    {id: 2, name: "ステージ3", correctCount: 0},
-    {id: 3, name: "ステージ4", correctCount: 0},
-    {id: 4, name: "ステージ5", correctCount: 0},
-    {id: 5, name: "ステージ6", correctCount: 0},
-
-  ];
+  stages: Stage[] = [];
+  stages_is_disabled: boolean[] = [];
   profile: Profile = {
     id: 0,
     stage_progress: 0,
@@ -29,23 +22,32 @@ export class StageComponent implements OnInit{
     const profileId: number = 1;
     this.ProfileSvc.getProfile(profileId).subscribe(
       (profile: Profile) => {
-        console.log(profile);
+        console.log(profile);[[[]]]
         this.profile = profile;
         this.stages = [];
         let stage_count = 0;
-        for(let i = profile.question_progress; i > 0; i -= 10)
+        for(let i = 0; i < 10; i++)
         {
           if(profile.question_progress >= 10)
           {
             this.stages.push({id: stage_count, name: `ステージ${stage_count+1}`, correctCount: 10});
+            this.stages_is_disabled.push(false);
+            if(profile.question_progress == 10)
+              this.stages_is_disabled.push(false);
+            profile.question_progress -= 10;
+          }
+          else if(profile.question_progress > 0)
+          {
+            this.stages.push({id: stage_count, name: `ステージ${stage_count+1}`, correctCount: profile.question_progress});
+            this.stages_is_disabled.push(false);
             profile.question_progress -= 10;
           }
           else
           {
-            this.stages.push({id: stage_count, name: `ステージ${stage_count+1}`, correctCount: profile.question_progress});
+            this.stages.push({id: stage_count, name: `ステージ${stage_count+1}`, correctCount: 0});
+            this.stages_is_disabled.push(true);
           }
-          
-
+          stage_count++;
         }
       },
       (error) => {

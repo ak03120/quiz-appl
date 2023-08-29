@@ -29,7 +29,7 @@ export class QuestionService {
       map(response => {
         const questionData = response.data.attributes;
         const question: Question = {
-          id: questionData.id,
+          id: response.data.id,
           stage_number: questionData.stage_number,
           question_text: questionData.question_text,
           question_image_url: questionData.question_image_url,
