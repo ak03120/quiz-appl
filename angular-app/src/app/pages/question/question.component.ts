@@ -23,46 +23,28 @@ export class QuestionComponent implements OnInit {
       order_number: 0
     };
   }
-  question_number = this.route.snapshot.params['stage'];
-  choices: Choice[] = [{
-    question_id: 0,
-    content: "選択1",
-    order_number: 1
-  },
-  {
-    question_id: 0,
-    content: "選択2",
-    order_number: 2
-  },
-  {
-    question_id: 0,
-    content: "選択3",
-    order_number: 3
-  },
-  {
-    question_id: 0,
-    content: "選択4",
-    order_number: 4
-  }]
-  question: Question =
-  {
+  question_number = Number(this.route.snapshot.paramMap.get('stage'));
+  choices: Choice[] = []
+  question: Question = {
     id: 0,
-    stage_number: 1,
-    question_text: "問題文1",
+    stage_number: 0,
+    question_text: '',
     question_image_url: null,
-    // question_image_url:"https://pbs.twimg.com/card_img/1675384287611469829/U_LK6jrU?format=jpg&name=900x900",
-    answer_type: "text",
-    choices: this.choices,
-    answer_correct: 1
+    answer_type: '',
+    choices: [],
+    answer_correct: 0
   }
   ngOnInit(): void {
+    if(this.question_number === null)
+    {
+      this.router.navigate(["/start"]);
+    }
     if(this.question_number > 1)
     {
       this.question_number = (this.question_number-1)*10+1;
     }
     this.qService.getQuestion(this.question_number).subscribe(
       (question: Question) => {
-        console.log(question);
         this.question = question;
       },
       (error) => {
@@ -75,7 +57,6 @@ export class QuestionComponent implements OnInit {
       return;
     this.question_number++;
     this.qService.choiceHistory.push(this.selectedChoice);
-    console.log(this.selectedChoice.order_number,this.question.answer_correct);
 
     if(this.selectedChoice.order_number === this.question.answer_correct)
       this.qService.correctCount++;
@@ -83,7 +64,6 @@ export class QuestionComponent implements OnInit {
 
     this.qService.getQuestion(this.question_number).subscribe(
       (question: Question) => {
-        console.log(question);
         this.question = question;
       },
       (error) => {
