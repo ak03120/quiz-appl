@@ -14,10 +14,10 @@ import { Profile } from 'src/app/types/profile';
 })
 export class ResultComponent {
   result: Result = {id: 0, stage_number: 0, achievement: "Achievement"};
-  correct_count: number = 0;
+  correctCount: number = 0;
   constructor(private http: HttpClient ,private profileSvc: ProfileService, private qService: QuestionService, private router: Router, private rService: ResultService) {}
   ngOnInit(): void {
-    this.correct_count = this.qService.correctCount;
+    this.correctCount = this.qService.correctCount;
     this.rService.getResult(this.qService.choiceHistory[0].question_id%10).subscribe(
       (result: Result) => {
         this.result = result;
@@ -35,7 +35,7 @@ export class ResultComponent {
           console.log("Already cleared");
           return;
         }
-        if(this.qService.correctCount > profile.question_progress%10)
+        if(this.correctCount > profile.question_progress%10)
         {
           let clearedQuestions = (this.qService.currentStage-1)*10;
           console.log("if true");

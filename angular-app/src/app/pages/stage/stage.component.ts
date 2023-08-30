@@ -14,7 +14,7 @@ import { Router, ActivatedRoute} from '@angular/router';
 export class StageComponent implements OnInit{
   constructor(private http: HttpClient, private ProfileSvc: ProfileService, private questionSvc: QuestionService, private router: Router) {}
   stages: Stage[] = [];
-  stages_is_disabled: boolean[] = [];
+  disabledStages: boolean[] = [];
   profile: Profile = {
     id: 0,
     stage_progress: 0,
@@ -24,33 +24,31 @@ export class StageComponent implements OnInit{
     const profileId: number = 1;
     this.ProfileSvc.getProfile(profileId).subscribe(
       (profile: Profile) => {
-        console.log(profile);[[[]]]
+        console.log(profile);
         this.profile = profile;
         this.stages = [];
-        let stage_count = 0;
-        for(let i = 0; i < 10; i++)
+        for(let stageCount = 0; stageCount < 11; stageCount++)
         {
           if(profile.stage_progress > 1)
           {
-            this.stages.push({id: stage_count, name: `ステージ${stage_count+1}`, correctCount: 10});
-            this.stages_is_disabled.push(false);
+            this.stages.push({id: stageCount, name: `ステージ${stageCount+1}`, correctCount: 10});
+            this.disabledStages.push(false);
             profile.stage_progress -= 1;
             profile.question_progress -= 10;
           }
           else if(profile.stage_progress == 1)
           {
-            this.stages.push({id: stage_count, name: `ステージ${stage_count+1}`, correctCount: profile.question_progress});
-            this.stages_is_disabled.push(false);
+            this.stages.push({id: stageCount, name: `ステージ${stageCount+1}`, correctCount: profile.question_progress});
+            this.disabledStages.push(false);
             profile.stage_progress -= 1;
           }
           else
           {
-            if(i == 0 && profile.stage_progress == 0)
-              this.stages_is_disabled.push(false);
-            this.stages.push({id: stage_count, name: `ステージ${stage_count+1}`, correctCount: 0});
-            this.stages_is_disabled.push(true);
+            if(stageCount == 0 && profile.stage_progress == 0)
+              this.disabledStages.push(false);
+            this.stages.push({id: stageCount, name: `ステージ${stageCount+1}`, correctCount: 0});
+            this.disabledStages.push(true);
           }
-          stage_count++;
         }
       },
       (error) => {

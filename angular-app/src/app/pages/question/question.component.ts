@@ -23,7 +23,8 @@ export class QuestionComponent implements OnInit {
       order_number: 0
     };
   }
-  question_number = Number(this.route.snapshot.paramMap.get('stage'));
+  questionId = Number(this.route.snapshot.paramMap.get('stage'));
+  questionNumber: number = 0;
   choices: Choice[] = []
   question: Question = {
     id: 0,
@@ -35,17 +36,18 @@ export class QuestionComponent implements OnInit {
     answer_correct: 0
   }
   ngOnInit(): void {
-    if(this.question_number === null)
+    if(this.questionId === null)
     {
       this.router.navigate(["/start"]);
     }
-    if(this.question_number > 1)
+    if(this.questionId > 1)
     {
-      this.question_number = (this.question_number-1)*10+1;
+      this.questionId = (this.questionId-1)*10+1;
     }
-    this.qService.getQuestion(this.question_number).subscribe(
+    this.qService.getQuestion(this.questionId).subscribe(
       (question: Question) => {
         this.question = question;
+        this.questionNumber = this.qService.questionNumber;
       },
       (error) => {
         console.error(error);
@@ -55,16 +57,17 @@ export class QuestionComponent implements OnInit {
   nextQuestion() {
     if(this.selectedChoice.question_id == 0)
       return;
-    this.question_number++;
+    this.questionId++;
     this.qService.choiceHistory.push(this.selectedChoice);
 
     if(this.selectedChoice.order_number === this.question.answer_correct)
       this.qService.correctCount++;
 
 
-    this.qService.getQuestion(this.question_number).subscribe(
+    this.qService.getQuestion(this.questionId).subscribe(
       (question: Question) => {
         this.question = question;
+        this.questionNumber = this.qService.questionNumber;
       },
       (error) => {
         console.error(error);
