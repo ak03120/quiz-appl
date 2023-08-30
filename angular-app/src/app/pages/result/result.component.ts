@@ -27,27 +27,33 @@ export class ResultComponent {
       }
     )
     console.log(this.qService.choiceHistory[0].question_id);
+    let correctedCount: number = ((this.qService.choiceHistory[0].question_id%10)*10);
     this.profileSvc.getProfile(1).subscribe(
       (profile: Profile) => {
-        if((this.qService.correctCount + ((this.qService.choiceHistory[0].question_id%10)*10)) > profile.question_progress)
+        let isCleared: boolean = this.qService.currentStage < profile.stage_progress;
+        if(isCleared) {
+          console.log("Already cleared");
+          return;
+        }
+        if(this.qService.correctCount > profile.question_progress%10)
         {
-          const jsonData = {
-            data: {
-              question_progress: this.qService.correctCount + ((this.qService.choiceHistory[0].question_id%10)*10),
-              stage_progress: this.qService.choiceHistory[0].question_id%10,
-            }
-          };
-          this.http.put('http://localhost:1337/api/profiles/1', jsonData).subscribe(response => {
-            console.log(response);
-            this.qService.correctCount = 0;
-            this.qService.choiceHistory = [];
-          }, error => {
-            console.log(error)
+          let clearedQuestions = (this.qService.currentStage-1)*10;
+          console.log("if true");
+          console.log(this.qService.correctCount + clearedQuestions);
+          console.log(((this.qService.choiceHistory[0].question_id%10)*10));
+          this.profileSvc.putProgress(this.qService.correctCount + clearedQuestions).subscribe((profile: Profile) => {
+
           });
         }
       },
       (error) => {
         console.error(error);
+      },
+      () => {
+        console.log("Complete");
+        console.log(this.qService.choiceHistory);
+        this.qService.correctCount = 0;
+        this.qService.choiceHistory = [];
       }
     )
   }

@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProfileService } from 'src/app/services/profile.service';
 import { Stage } from 'src/app/types/stage';
 import { Profile } from 'src/app/types/profile';
+import { QuestionService } from 'src/app/services/question.service';
+import { Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-stage',
@@ -10,7 +12,7 @@ import { Profile } from 'src/app/types/profile';
   styleUrls: ['./stage.component.scss']
 })
 export class StageComponent implements OnInit{
-  constructor(private http: HttpClient, private ProfileSvc: ProfileService) {}
+  constructor(private http: HttpClient, private ProfileSvc: ProfileService, private questionSvc: QuestionService, private router: Router) {}
   stages: Stage[] = [];
   stages_is_disabled: boolean[] = [];
   profile: Profile = {
@@ -28,22 +30,23 @@ export class StageComponent implements OnInit{
         let stage_count = 0;
         for(let i = 0; i < 10; i++)
         {
-          if(profile.question_progress >= 10)
+          if(profile.stage_progress > 1)
           {
             this.stages.push({id: stage_count, name: `ステージ${stage_count+1}`, correctCount: 10});
             this.stages_is_disabled.push(false);
-            if(profile.question_progress == 10)
-              this.stages_is_disabled.push(false);
+            profile.stage_progress -= 1;
             profile.question_progress -= 10;
           }
-          else if(profile.question_progress > 0)
+          else if(profile.stage_progress == 1)
           {
             this.stages.push({id: stage_count, name: `ステージ${stage_count+1}`, correctCount: profile.question_progress});
             this.stages_is_disabled.push(false);
-            profile.question_progress -= 10;
+            profile.stage_progress -= 1;
           }
           else
           {
+            if(i == 0 && profile.stage_progress == 0)
+              this.stages_is_disabled.push(false);
             this.stages.push({id: stage_count, name: `ステージ${stage_count+1}`, correctCount: 0});
             this.stages_is_disabled.push(true);
           }
@@ -55,5 +58,10 @@ export class StageComponent implements OnInit{
       }
     );
 
+  }
+  startQuiz(stageNumber: number)
+  {
+    this.questionSvc.setStage(stageNumber);
+    this.router.navigate(["/question", stageNumber]);
   }
 }

@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'start', component: StartComponent},//, canActivate: [authGuard]},
   {path: 'stage', component: StageComponent},
-  {path: 'question', component: QuestionComponent},
+  {path: 'question/:stage', component: QuestionComponent},
   {path: 'result', component: ResultComponent},
   {path: 'profile', component: ProfileComponent},
   { path: '**', redirectTo: '/start', pathMatch: 'full' }
