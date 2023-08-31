@@ -4,7 +4,7 @@
   <mat-card class="default-card">
     <mat-card-header>
       <mat-card-title class="bold-text">{{stage.name}}</mat-card-title>
-      <button mat-raised-button color="primary" class="start-button" (click)="startQuiz(stage.id+1)" [disabled]="stages_is_disabled[i]">はじめる</button>
+      <button mat-raised-button color="primary" class="start-button" (click)="startQuiz(stage.id+1)" [disabled]="disabledStages[i]">はじめる</button>
     </mat-card-header>
     <mat-card-content>
       <div class="progress-bar-container">

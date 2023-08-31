@@ -11,6 +11,7 @@ import { map } from 'rxjs/operators';
 export class QuestionService {
   choiceHistory: Choice[] = [];
   correctCount: number = 0;
+  questionNumber: number = 0;
   currentStage: number = 0;
 
   constructor(private http: HttpClient) { }
@@ -26,9 +27,11 @@ export class QuestionService {
   setStage(stageNumber: number)
   {
     this.currentStage = stageNumber;
+    this.questionNumber = 0;
   }
 
   getQuestion(questionId: number): Observable<Question> {
+    this.questionNumber++;
     let apiUrl: string = `http://localhost:1337/api/questions/${questionId}?populate=*`;
     //return this.http.get<Question>(apiUrl);
     return this.http.get<any>(apiUrl).pipe(
