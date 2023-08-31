@@ -28,7 +28,7 @@
           <ng-container *ngFor="let choice of question.choices">
             <div class="radio-button-set">
               <div>
-                <img src="{{choice.content}}">
+                <img class="answer-image" src="{{choice.content}}">
               </div>
               <div>
                 <mat-radio-button class="radio-button-image" [value]="choice"></mat-radio-button>

@@ -15,10 +15,12 @@ import { Profile } from 'src/app/types/profile';
 export class ResultComponent {
   result: Result = {id: 0, stage_number: 0, achievement: "Achievement"};
   correctCount: number = 0;
+  currentStage: number = 0;
   constructor(private http: HttpClient ,private profileSvc: ProfileService, private qService: QuestionService, private router: Router, private rService: ResultService) {}
   ngOnInit(): void {
     this.correctCount = this.qService.correctCount;
-    this.rService.getResult(this.qService.choiceHistory[0].question_id%10).subscribe(
+    this.currentStage = this.qService.currentStage;
+    this.rService.getResult(this.currentStage).subscribe(
       (result: Result) => {
         this.result = result;
       },
