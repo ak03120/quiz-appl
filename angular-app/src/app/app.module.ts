@@ -37,6 +37,8 @@ const googleLoginOptions: GoogleInitOptions = {
 };
 
 import { HttpClientModule } from '@angular/common/http';
+import { AuthComponent } from './pages/auth/auth.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -48,15 +50,13 @@ import { HttpClientModule } from '@angular/common/http';
     ResultComponent,
     ToolbarComponent,
     ProfileComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    SocialLoginModule,
-    GoogleSigninButtonModule,
-
     MatToolbarModule,
     MatCardModule,
     MatInputModule,
@@ -67,7 +67,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatRadioModule,
     NgxSkeletonLoaderModule,
     MatSidenavModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     {
