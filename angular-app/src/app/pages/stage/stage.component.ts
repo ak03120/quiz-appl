@@ -5,6 +5,7 @@ import { Stage } from 'src/app/types/stage';
 import { Profile } from 'src/app/types/profile';
 import { QuestionService } from 'src/app/services/question.service';
 import { Router, ActivatedRoute} from '@angular/router';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-stage',
@@ -12,7 +13,7 @@ import { Router, ActivatedRoute} from '@angular/router';
   styleUrls: ['./stage.component.scss']
 })
 export class StageComponent implements OnInit{
-  constructor(private http: HttpClient, private ProfileSvc: ProfileService, private questionSvc: QuestionService, private router: Router) {}
+  constructor(private http: HttpClient, private ProfileSvc: ProfileService, private questionSvc: QuestionService, private userSvc: UserService, private router: Router) {}
   stages: Stage[] = [];
   stages_is_disabled: boolean[] = [];
   profile: Profile = {
@@ -21,8 +22,7 @@ export class StageComponent implements OnInit{
     question_progress: 0,
   };
   ngOnInit(): void {
-    const profileId: number = 1;
-    this.ProfileSvc.getProfile(profileId).subscribe(
+    this.ProfileSvc.getProfileFromUser(this.userSvc.userId).subscribe(
       (profile: Profile) => {
         console.log(profile);[[[]]]
         this.profile = profile;

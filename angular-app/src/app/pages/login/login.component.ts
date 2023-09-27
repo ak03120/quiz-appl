@@ -19,17 +19,17 @@ export class LoginComponent implements OnInit {
   private accessToken: string = "";
   constructor(private authService: SocialAuthService, private httpClient: HttpClient, private router: Router, public userService: UserService) { }
   ngOnInit() {
-    this.authService.authState.subscribe((user) => {
-      localStorage.setItem('currentUser', JSON.stringify(user));
-      this.userService.currentUser = user;
-      this.user = user;
-      this.loggedIn = (user != null);
-      console.log(""+user.id+this.loggedIn);
-      if(this.loggedIn)
-      {
-       this.router.navigate(['/start']);
-      }
-    });
+    // this.authService.authState.subscribe((user) => {
+    //   localStorage.setItem('currentUser', JSON.stringify(user));
+    //   this.userService.currentUser = user;
+    //   this.user = user;
+    //   this.loggedIn = (user != null);
+    //   console.log(""+user.id+this.loggedIn);
+    //   if(this.loggedIn)
+    //   {
+    //    this.router.navigate(['/start']);
+    //   }
+    // });
   }
   getAccessToken(): void {
     this.authService.getAccessToken(GoogleLoginProvider.PROVIDER_ID).then(accessToken => this.accessToken = accessToken);
@@ -40,5 +40,7 @@ export class LoginComponent implements OnInit {
   logOut(): void {
     this.authService.signOut();
   }
-
+  googleLogin(): void {
+    location.href = ("http://localhost:1337/api/connect/google");
+  }
 }

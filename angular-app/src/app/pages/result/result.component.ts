@@ -6,6 +6,7 @@ import { ResultService } from 'src/app/services/result.service';
 import { HttpClient } from '@angular/common/http';
 import { ProfileService } from 'src/app/services/profile.service';
 import { Profile } from 'src/app/types/profile';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-result',
@@ -15,7 +16,7 @@ import { Profile } from 'src/app/types/profile';
 export class ResultComponent {
   result: Result = {id: 0, stage_number: 0, achievement: "Achievement"};
   correct_count: number = 0;
-  constructor(private http: HttpClient ,private profileSvc: ProfileService, private qService: QuestionService, private router: Router, private rService: ResultService) {}
+  constructor(private http: HttpClient ,private profileSvc: ProfileService, private qService: QuestionService, private router: Router, private rService: ResultService, private userSvc: UserService) {}
   ngOnInit(): void {
     this.correct_count = this.qService.correctCount;
     this.rService.getResult(this.qService.choiceHistory[0].question_id%10).subscribe(
@@ -28,7 +29,7 @@ export class ResultComponent {
     )
     console.log(this.qService.choiceHistory[0].question_id);
     let correctedCount: number = ((this.qService.choiceHistory[0].question_id%10)*10);
-    this.profileSvc.getProfile(1).subscribe(
+    this.profileSvc.getProfileFromUser(this.userSvc.userId).subscribe(
       (profile: Profile) => {
         let isCleared: boolean = this.qService.currentStage < profile.stage_progress;
         if(isCleared) {

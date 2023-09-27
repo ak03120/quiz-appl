@@ -7,15 +7,17 @@ import { QuestionComponent } from './pages/question/question.component';
 import { ResultComponent } from './pages/result/result.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { authGuard } from './auth.guard';
+import { AuthComponent } from './pages/auth/auth.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: 'start', component: StartComponent},//, canActivate: [authGuard]},
-  {path: 'stage', component: StageComponent},
-  {path: 'question/:stage', component: QuestionComponent},
-  {path: 'result', component: ResultComponent},
-  {path: 'profile', component: ProfileComponent},
-  { path: '**', redirectTo: '/start', pathMatch: 'full' }
+  {path: 'auth', component: AuthComponent},
+  {path: 'start', component: StartComponent, canActivate: [authGuard]},
+  {path: 'stage', component: StageComponent, canActivate: [authGuard]},
+  {path: 'question/:stage', component: QuestionComponent, canActivate: [authGuard]},
+  {path: 'result', component: ResultComponent, canActivate: [authGuard]},
+  {path: 'profile', component: ProfileComponent, canActivate: [authGuard]},
+  { path: '**', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({

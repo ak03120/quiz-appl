@@ -3,21 +3,6 @@
 <h3>始めるにはログインしてください。</h3>
 <mat-card class="default-card center">
     <mat-card-content>
-        <!-- <div id="g_id_onload"
-            data-client_id="831105382657-45pj5bu9j03t4p8lh54qpuegogbjnpso.apps.googleusercontent.com"
-            data-context="signin"
-            data-ux_mode="popup"
-            data-login_uri="http://localhost:4200/login"
-            data-auto_prompt="false">
-        </div>
-        <div class="g_id_signin"
-            data-type="standard"
-            data-shape="rectangular"
-            data-theme="filled_blue"
-            data-text="signin_with"
-            data-size="large"
-            data-logo_alignment="left">
-        </div> -->
-        <asl-google-signin-button type='standard' size='large'></asl-google-signin-button>
+        <a href="http://localhost:1337/api/connect/google"><button mat-raised-button color="primary" class="login-button">Google でログイン</button></a>
     </mat-card-content>
 </mat-card>
